@@ -5,6 +5,7 @@ namespace ProjetoRotina.BackEnd.Repositorio
 {
     public class ApplicationContext : DbContext
     {
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
         public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
