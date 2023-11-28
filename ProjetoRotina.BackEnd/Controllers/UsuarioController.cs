@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjetoRotina.BackEnd.Entidades;
 using ProjetoRotina.BackEnd.Servicos;
 
 namespace ProjetoRotina.BackEnd.Controllers
@@ -24,6 +25,22 @@ namespace ProjetoRotina.BackEnd.Controllers
             catch
             {
                 return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [Route("registrar")]
+        public IActionResult Registrar([FromBody] Usuario usuario)
+        {
+            try
+            {
+                usuario.Id = 0;
+                _usuarioService.Criar(usuario);
+                return NoContent();
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
     }
