@@ -30,7 +30,7 @@ namespace ProjetoRotina.BackEnd.Controllers
 
         [HttpPost]
         [Route("registrar")]
-        public IActionResult Registrar([FromBody] Usuario usuario)
+        public IActionResult Registrar(Usuario usuario)
         {
             try
             {
