@@ -7,6 +7,7 @@ namespace ProjetoRotina.BackEnd.Repositorio
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Rotina> Rotinas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -15,7 +16,7 @@ namespace ProjetoRotina.BackEnd.Repositorio
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
+            modelBuilder.Entity<Rotina>().HasMany<RotinaRealizada>().WithOne();
             base.OnModelCreating(modelBuilder);
         }
     }

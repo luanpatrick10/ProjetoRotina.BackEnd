@@ -11,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IRotinaRepository, RotinaRepository>();
+builder.Services.AddScoped<IRotinaService, RotinaService>();
 builder.Services.AddDbContext<ApplicationContext>();
 builder.Services.AddCors(options =>
 {

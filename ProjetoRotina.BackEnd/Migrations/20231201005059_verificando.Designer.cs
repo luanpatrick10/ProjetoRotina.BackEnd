@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProjetoRotina.BackEnd.Repositorio;
@@ -11,9 +12,10 @@ using ProjetoRotina.BackEnd.Repositorio;
 namespace ProjetoRotina.BackEnd.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20231201005059_verificando")]
+    partial class verificando
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,6 +62,7 @@ namespace ProjetoRotina.BackEnd.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("DataDaRealizacao")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("IdDaRotina")
@@ -71,14 +74,9 @@ namespace ProjetoRotina.BackEnd.Migrations
                     b.Property<int?>("RotinaId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("RotinaId1")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
                     b.HasIndex("RotinaId");
-
-                    b.HasIndex("RotinaId1");
 
                     b.ToTable("RotinaRealizada");
                 });
@@ -136,10 +134,6 @@ namespace ProjetoRotina.BackEnd.Migrations
                     b.HasOne("ProjetoRotina.BackEnd.Entidades.Rotina", null)
                         .WithMany("RotinasRealizadas")
                         .HasForeignKey("RotinaId");
-
-                    b.HasOne("ProjetoRotina.BackEnd.Entidades.Rotina", null)
-                        .WithMany()
-                        .HasForeignKey("RotinaId1");
                 });
 
             modelBuilder.Entity("ProjetoRotina.BackEnd.Entidades.Rotina", b =>
