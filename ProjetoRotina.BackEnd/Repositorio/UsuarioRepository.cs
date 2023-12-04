@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjetoRotina.BackEnd.DTOS;
 using ProjetoRotina.BackEnd.Entidades;
 
 namespace ProjetoRotina.BackEnd.Repositorio
@@ -37,11 +38,21 @@ namespace ProjetoRotina.BackEnd.Repositorio
 
         }
 
-        public bool LogarPorEmailESenha(string email, string senha)
+        public LogadoDTO LogarPorEmailESenha(string email, string senha)
         {
-            if (_dbSet.Where(usuario => usuario.Email == email && usuario.Senha == senha).Any())
-                return true;
-            return false;
+            LogadoDTO logadoDTO = new LogadoDTO();
+            Usuario usuario = _dbSet.Where(usuario => usuario.Email == email && usuario.Senha == senha).FirstOrDefault();
+            if (usuario is not null)
+            {
+                logadoDTO.Logado = true;
+                logadoDTO.IdUsuario = usuario.Id;
+            }
+            else
+            {
+                logadoDTO.Logado = false;
+                logadoDTO.IdUsuario = 0;
+            }
+            return logadoDTO;
         }
     }
 }

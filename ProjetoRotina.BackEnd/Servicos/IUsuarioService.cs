@@ -1,4 +1,5 @@
-﻿using ProjetoRotina.BackEnd.Entidades;
+﻿using ProjetoRotina.BackEnd.DTOS;
+using ProjetoRotina.BackEnd.Entidades;
 
 namespace ProjetoRotina.BackEnd.Servicos
 {
@@ -8,6 +9,6 @@ namespace ProjetoRotina.BackEnd.Servicos
         Usuario Obter(int id);
         void Atualizar(Usuario usuario);
         void Deletar(Usuario usuario);
-        bool Logar(string email, string senha);
+        LogadoDTO Logar(string email, string senha);
     }
 }

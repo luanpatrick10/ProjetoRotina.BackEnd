@@ -1,4 +1,5 @@
-﻿using ProjetoRotina.BackEnd.Entidades;
+﻿using ProjetoRotina.BackEnd.DTOS;
+using ProjetoRotina.BackEnd.Entidades;
 using ProjetoRotina.BackEnd.Repositorio;
 
 namespace ProjetoRotina.BackEnd.Servicos
@@ -26,7 +27,7 @@ namespace ProjetoRotina.BackEnd.Servicos
             _usuarioRepository.Deletar(usuario);
         }
 
-        public bool Logar(string email, string senha)
+        public LogadoDTO Logar(string email, string senha)
         {
             return _usuarioRepository.LogarPorEmailESenha(email, senha);
         }
